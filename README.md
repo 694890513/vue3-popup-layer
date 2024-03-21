@@ -12,9 +12,6 @@
 - extra: 额外传递的参数对象.
 - isAsync(boolear): 是否为异步组件.
 
-## 响应式数据
-   使用 reactive 定义了一个响应式对象 data,用于存储弹窗的同步状态 isSynced 和唯一标识 id.
-
 ## 本地存储操作
 定义了一个 store 函数,用于封装与indexedDB相关的操作,包括获取、更新、重置等。这里使用了indexedDB来记录弹窗的历史状态.IndexedDB是一种浏览器内置的非关系型数据库,存储空间更大(较新浏览器可达1GB),支持结构化数据存储
 
@@ -30,8 +27,9 @@ hide 函数用于关闭弹窗,它根据用户的操作方式 (点击物理返回
 
 如果是点击物理返回键,则只需还原 isSynced 状态
 如果是点击按钮,则触发 onClose 事件,从indexedDB和浏览器历史状态中删除相应的记录,并执行 history.back() 操作
+
 ### 关闭弹窗 (另一种方式)
-closeLv 函数提供了另一种关闭弹窗的方式,它触发 update:visible 事件,通知外部组件改变 visible 的值。
+closePopup 函数提供了另一种关闭弹窗的方式,它触发 update:visible 事件,通知外部组件改变 visible 的值。
 
 ### 获取最大 z-index
 getMaxZIndex 函数用于获取页面中所有 DOM 元素的最大 z-index 值,以便为弹窗设置合适的 z-index。
@@ -59,7 +57,7 @@ listener 函数是一个事件监听器,它监听浏览器历史状态的变化 
 - getMaxZIndex: 获取最大 z-index 的方法
 - show: 打开弹窗的方法
 - hide: 关闭弹窗的方法
-- closeLv: 另一种关闭弹窗的方法
+- closePopup: 另一种关闭弹窗的方法
 - backLvBy: 返回到指定层级的方法
 - isSynced: 同步状态
 - id: 弹窗的唯一标识符
